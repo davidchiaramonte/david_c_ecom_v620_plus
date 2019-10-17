@@ -1,5 +1,11 @@
 view: orders {
-  sql_table_name: demo_db.orders ;;
+  sql_table_name:
+  {% if _model._name contains '_ecom' AND _user_attributes['david_c_test_number'] == 0 %}
+  demo_db.orders
+  {% else %}
+  demo_db.order_items
+  {% endif %}
+  ;;
   drill_fields: [id]
 
   dimension: id {
